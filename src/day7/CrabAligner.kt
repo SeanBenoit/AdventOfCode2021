@@ -1,5 +1,6 @@
 package day7
 
+import utils.median
 import kotlin.math.abs
 import kotlin.math.roundToInt
 
@@ -25,23 +26,10 @@ class CrabAligner(private val crabs: List<Int>) {
     }
 
     private fun medianCrabPosition(): Int {
-        val sortedCrabs = crabs.sorted()
-        val numberOfCrabs = crabs.size
-
-        return if (numberOfCrabs % 2 == 0) {
-            // even # of crabs
-            val valueBelowMedian = sortedCrabs[numberOfCrabs / 2 - 1]
-            val valueAboveMedian = sortedCrabs[numberOfCrabs / 2]
-            (valueBelowMedian + valueAboveMedian) / 2
-        } else {
-            // odd # of crabs
-            sortedCrabs[numberOfCrabs / 2]
-        }
+        return crabs.median()
     }
 
     private fun meanCrabPosition(): Int {
-        println("avg: ${crabs.average()}")
-        println("rounded: ${crabs.average().roundToInt()}")
         return crabs.average().roundToInt()
     }
 
